@@ -2,7 +2,7 @@
   "name": "ubice_rekognition",
   "productName": "ubice_rekognition",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "Rekognize runner numbers in pictures",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
@@ -13,8 +13,8 @@
   },
   "keywords": [],
   "author": {
-    "name": "garcia172",
-    "email": "garcia172@avaya.com"
+    "name": "lautarojgarcia177",
+    "email": "lautarojgarcia177@gmail.com"
   },
   "license": "MIT",
   "devDependencies": {
@@ -41,6 +41,7 @@
     "typescript": "~4.5.4"
   },
   "dependencies": {
+    "@aws-sdk/client-rekognition": "^3.208.0",
     "electron-squirrel-startup": "^1.0.0",
     "exiftool-vendored": "^18.6.0",
     "lodash": "^4.17.21",
