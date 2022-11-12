@@ -1,5 +1,5 @@
 import { BrowserWindow, IpcMain } from 'electron';
-import { IAWSCredentials, IRekognitionFile } from 'interfaces';
+import { IAWSCredentials, IRekognitionFile } from '../interfaces';
 import {
   AWS__SET_CREDENTIALS,
   START_IMAGES_REKOGNITION,

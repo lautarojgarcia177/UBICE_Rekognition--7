@@ -3,7 +3,7 @@ import {
   APP_ERROR,
   REKOGNITION_FINISH,
   REKOGNITION_PROGRESS,
-} from "./ipc.messages.contants";
+} from "./ipc.messages.constants";
 
 // Main to Renderer (one-way)
 export function notifyRekognitionProgress(

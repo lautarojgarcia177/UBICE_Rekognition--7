@@ -16,7 +16,7 @@ import {
   REKOGNITION_FINISH,
   REKOGNITION_PROGRESS,
   START_IMAGES_REKOGNITION,
-} from "../ipc/ipc.messages.contants";
+} from "../ipc/ipc.messages.constants";
 
 contextBridge.exposeInMainWorld("electron", {
   setAWSCredentials: (credentials: IAWSCredentials) =>
