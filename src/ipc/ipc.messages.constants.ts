@@ -6,3 +6,4 @@ export const START_IMAGES_REKOGNITION = 'start-images-rekognition';
 export const REKOGNITION_PROGRESS = 'rekognition-progress';
 export const REKOGNITION_FINISH = 'rekognition-finish';
 export const APP_ERROR = 'app-error';
+export const SELECT_IMAGES = 'select-images';

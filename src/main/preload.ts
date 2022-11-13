@@ -16,6 +16,7 @@ import {
   REKOGNITION_FINISH,
   REKOGNITION_PROGRESS,
   START_IMAGES_REKOGNITION,
+  SELECT_IMAGES,
 } from "../ipc/ipc.messages.constants";
 
 contextBridge.exposeInMainWorld("electron", {
@@ -33,4 +34,5 @@ contextBridge.exposeInMainWorld("electron", {
   onRekognitionProgress: (callback) =>
     ipcRenderer.on(REKOGNITION_PROGRESS, callback),
   onError: (callback) => ipcRenderer.on(APP_ERROR, callback),
+  selectImages: () => ipcRenderer.invoke(SELECT_IMAGES),
 });

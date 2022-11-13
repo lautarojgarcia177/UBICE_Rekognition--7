@@ -27,4 +27,21 @@
  */
 
 // Add this to the end of the existing file
-import './';
+import "./";
+
+//Declare window global variable
+declare global {
+    interface Window {
+      electron: {
+        setAWSCredentials: any;
+        getAWSCredentials: any;
+        setAWSRekognitionSettings: any;
+        getAWSRekognitionSettings: any;
+        startImagesRekognition: any;
+        onRekognitionFinish: any;
+        onRekognitionProgress: any;
+        onError: any;
+        selectImages: any;
+      };
+    }
+}

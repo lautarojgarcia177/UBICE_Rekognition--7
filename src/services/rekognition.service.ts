@@ -1,8 +1,33 @@
-import { AWSRekognitionErrorTypes } from '../enums';
-import { UBICEAWSClient } from '../classes/UBICEAWSClient';
-import { IRekognitionFile } from '../interfaces';
-import * as storeSvc from '../services/store.service';
-import * as exiftoolService from '../services/exiftool.service';
+import { AWSRekognitionErrorTypes } from "../enums";
+import { UBICEAWSClient } from "../classes/UBICEAWSClient";
+import { IRekognitionFile } from "../interfaces";
+import * as storeSvc from "../services/store.service";
+import * as exiftoolService from "../services/exiftool.service";
+import { BrowserWindow, dialog } from "electron";
+
+export function selectImages(browserWindow: BrowserWindow) {
+  return dialog
+    .showOpenDialog(browserWindow, {
+      title: "Seleccionar imagenes",
+      properties: ["openFile", "multiSelections"],
+      filters: [
+        {
+          extensions: ["jpg", "png", "JPG", "PNG", "JPEG", "jpeg"],
+          name: "image",
+        },
+      ],
+    })
+    .then((result) => {
+      if (result.canceled) {
+        return "Dialog was canceled";
+      } else {
+        return result;
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
 
 export async function rekognizeImages(
   files: IRekognitionFile[],
@@ -14,30 +39,30 @@ export async function rekognizeImages(
   const awsRekognitionSettings = storeSvc.getAWSRekognitionSettings();
   const awsClient = new UBICEAWSClient(awsCredentials);
   function awsRekognitionPromiseErrorHandler(err: AWSRekognitionErrorTypes) {
-    console.error('AWS REKOGNITION ERROR', err);
+    console.error("AWS REKOGNITION ERROR", err);
     // Generar el objeto de error
     const error = new Error();
     error.name = err;
     switch (error.name) {
       case AWSRekognitionErrorTypes.InvalidSignatureException:
-        error.message = 'Las credenciales de AWS son invalidas';
+        error.message = "Las credenciales de AWS son invalidas";
         break;
       case AWSRekognitionErrorTypes.ValidationException:
-        error.message = 'Variables de reconocimiento en AWS invalidas';
+        error.message = "Variables de reconocimiento en AWS invalidas";
         break;
       default:
-        error.message = 'Hubo un error en el rekonocimiento de AWS';
+        error.message = "Hubo un error en el rekonocimiento de AWS";
     }
     errorCallback(error);
   }
   function exiftoolWriteMetadataPromiseErrorHandler(err) {
-    console.error('EXIFTOOL WRITE METADATA ERROR', err);
+    console.error("EXIFTOOL WRITE METADATA ERROR", err);
     // Generar el objeto de error
     const error = new Error();
     error.name = err;
     switch (error.name) {
       default:
-        error.message = 'Hubo un error en el rekonocimiento de AWS';
+        error.message = "Hubo un error en el rekonocimiento de AWS";
     }
     errorCallback(error);
   }
