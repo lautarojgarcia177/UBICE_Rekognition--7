@@ -27,13 +27,14 @@
  */
 
 // Add this to the end of the existing file
+import { IAWSCredentials } from "src/interfaces";
 import "./";
 
 //Declare window global variable
 declare global {
     interface Window {
       electron: {
-        setAWSCredentials: any;
+        setAWSCredentials: (credentials: IAWSCredentials) => void;
         getAWSCredentials: any;
         setAWSRekognitionSettings: any;
         getAWSRekognitionSettings: any;

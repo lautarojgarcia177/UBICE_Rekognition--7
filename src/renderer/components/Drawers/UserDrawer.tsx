@@ -1,31 +1,34 @@
-import { Menu as Feather_Menu_Icon } from "react-feather";
+import {
+  Key as Feather_Key_Icon,
+  User as Feather_User_Icon,
+} from "react-feather";
+import { appRoutes } from "../../index";
+import MenuEntry from "./MenuEntry";
 import {
   Drawer,
   DrawerBody,
-  DrawerOverlay,
   DrawerContent,
-  useDisclosure,
-  IconButton,
+  DrawerOverlay,
   Flex,
+  IconButton,
+  useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
-import { Link as Router_Link } from "react-router-dom";
 
-export default function MenuDrawer() {
+export default function Rekognition_MenuDrawer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
-
   return (
     <>
       <IconButton
         ref={btnRef}
         onClick={onOpen}
-        aria-label="settings"
-        icon={<Feather_Menu_Icon />}
+        aria-label="Menu"
+        icon={<Feather_User_Icon />}
       />
       <Drawer
         isOpen={isOpen}
-        placement="left"
+        placement="right"
         onClose={onClose}
         finalFocusRef={btnRef}
       >
@@ -33,12 +36,12 @@ export default function MenuDrawer() {
         <DrawerContent>
           <DrawerBody>
             <Flex direction="column" alignItems="start">
-              <Router_Link to="/" onClick={onClose}>
-                Rekonocer numeros
-              </Router_Link>
-              <Router_Link to="config" onClick={onClose}>
-                Configuracion
-              </Router_Link>
+              <MenuEntry
+                title="Credenciales AWS"
+                linkPath={appRoutes.awsCredentials}
+                Feather_Icon={Feather_Key_Icon}
+                onClose={onClose}
+              />
             </Flex>
           </DrawerBody>
         </DrawerContent>

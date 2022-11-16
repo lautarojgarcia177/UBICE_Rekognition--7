@@ -7,8 +7,10 @@ export default function Rekognize() {
     });
   }
   return (
-    <Button onClick={selectImages} colorScheme="blue">
-      Rekognize
-    </Button>
+    <>
+      <Button onClick={selectImages} colorScheme="blue">
+        Seleccionar Imagenes
+      </Button>
+    </>
   );
 }
